@@ -25,6 +25,11 @@ class RssBot(XmppBot):
             url = clean_url(url)
             add_url('xmpp', msg['from'].bare, url)
             
+    def groupchat_subject(self, data):
+        for url in re_url.findall(data['subject']):
+            url = clean_url(url)
+            add_url('xmpp', data['from'].bare, url)
+        
     def command_error(self, *args, **kwargs):
         return None
 
