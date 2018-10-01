@@ -36,5 +36,5 @@ class RssBot(XmppBot):
 if __name__ == '__main__':
     path = os.path.dirname(os.path.realpath(__file__))
     os.chdir(path)
-    xmpp = RssBot("urlbot.yml")
+    xmpp = RssBot(sys.argv[1])
     xmpp.run()

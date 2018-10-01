@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .irc import IrcBot
+import sys
 import os
 import random
 import string
@@ -17,6 +18,6 @@ class MyIrcBot(IrcBot):
 if __name__ == '__main__':
     path = os.path.dirname(os.path.realpath(__file__))
     os.chdir(path)
-    irc = MyIrcBot("ircbot.yml")
+    irc = MyIrcBot(sys.argv[1])
     irc.run()
 

@@ -1,16 +1,22 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-for m in $(find . -name "run.py" | sed -e s'/.\///' -e 's/\//./g' -e 's/\.py$//' ); do
-    if [ -f "${m}.pid" ]; then
-        PID=$(<"${m}.pid")
-        if ps -p $PID > /dev/null; then
-            if [ "$1" != "-s" ]; then
-                echo "${m} is running with pid $PID"
+for MOD in $(find . -name "run.py" ); do
+    DIR="$(dirname "$MOD")"
+    MOD=$(echo "$MOD" | sed -e s'/.\///' -e 's/\//./g' -e 's/\.py$//')
+    for YML in $(find $DIR -name "*.yml" ); do
+        YML=$(basename $YML)
+        FN="${MOD}_${YML}"
+        if [ -f "${FN}.pid" ]; then
+            PID=$(<"${FN}.pid")
+            if ps -p $PID > /dev/null; then
+                if [ "$1" != "-s" ]; then
+                    echo "${FN} is running with pid $PID"
+                fi
+                continue
             fi
-            continue
         fi
-    fi
-    echo "Running ${m}"
-    nohup python3 -m "$m" > "${m}.log" 2>&1 &
-    echo "$!" > "${m}.pid"
+        echo "Running ${MOD} with ${YML}"
+        nohup python3 -m "$MOD" "$YML" > "${FN}.log" 2>&1 &
+        echo "$!" > "${FN}.pid"
+    done
 done
