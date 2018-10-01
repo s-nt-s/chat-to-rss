@@ -76,8 +76,9 @@ class IrcBot:
             if len(cmd)>1:
                 tag = cmd[1].strip()
                 channel = self.get_channel(tag)
-                if channel:
-                    if "PRIVMSG" in tag:
+                pieces = tag.split()
+                if channel and len(pieces)==3:
+                    if pieces[1] in ("PRIVMSG", "TOPIC"):
                         nick = tag.split("!")[0]
                         txt = ":".join(cmd[2:])
                         self.process_msg(channel, nick, txt)
