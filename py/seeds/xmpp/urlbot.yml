@@ -1,0 +1,12 @@
+#user: 'rssbot@xmpp.jp'
+user: 'rss@suchat.org'
+pass: 'vamosaconstruirunrss'
+auto: True
+rooms: [pruebas@salas.suchat.org, conversations@conference.siacs.eu, lobby@conference.xmpp.jp]
+lisent: [groupchat]
+#, hacklab@grupo.ingobernable.net]
+avatar: rss.png
+vcard: 
+  FN: RSS
+  NICKNAME: RSS
+  DESC: Creo un rss con los links escritos en el canal

@@ -1,0 +1,11 @@
+user: 'bot-rss@xmpp.server'
+pass: 'password'
+auto: True
+rooms: [room1@conference.server.org, room2@conference.server.org, room3conference.server.org]
+lisent: [groupchat]
+avatar: rss.png
+vcard: 
+  FN: RSS
+  NICKNAME: RSS
+  URL: https://github.com/s-nt-s/chat-to-rss
+  DESC: Creo un rss con los links escritos en el canal
