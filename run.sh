@@ -11,6 +11,6 @@ for m in $(find . -name "run.py" | sed -e s'/.\///' -e 's/\//./g' -e 's/\.py$//'
         fi
     fi
     echo "Running ${m}"
-    nohup python3 -m "$m" > "${m}.log" &
+    nohup python3 -m "$m" > "${m}.log" 2>&1 &
     echo "$!" > "${m}.pid"
 done
